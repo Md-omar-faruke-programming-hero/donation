@@ -14,13 +14,11 @@ const FontPage = () => {
       .then((data) => {
         setDonateEvent(data);
         setSearchDonateEvent(data);
-        if (search.length === 0) {
-            setSearchDonateEvent(data);
-          }
+       
       });
   }, [search]);
 
- console.log(search.length)
+
   const handleSearch = (search) => {
     const filterData = donateEvent.filter((srh) =>
       srh.category.toLowerCase().includes(search.trim().toLowerCase())
@@ -43,7 +41,7 @@ const FontPage = () => {
               onChange={(e) => setSearch(e.target.value)}
               className="h-[50px] w-[350px] rounded-l-xl p-[16px] outline-none text-black"
               type="text"
-              placeholder="Search..."
+              placeholder="Search Category..."
             />
             <button
               onClick={() => handleSearch(search)}
@@ -56,10 +54,18 @@ const FontPage = () => {
       </div>
 
       <div className="px-[140px]">
-        <div className="grid grid-cols-4 gap-[24px] mb-[180px]">
-          {Array.isArray(searchDonateEvent) &&
-            searchDonateEvent.map((event, i) => <Events key={i} event={event}></Events>)}
-        </div>
+        {searchDonateEvent.length === 0 ? (
+          <div className="text-center text-[24px] text-gray-500">
+            No matching categories found.
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 gap-[24px] mb-[180px]">
+            {Array.isArray(searchDonateEvent) &&
+              searchDonateEvent.map((event, i) => (
+                <Events key={i} event={event}></Events>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

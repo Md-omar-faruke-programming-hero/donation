@@ -2,7 +2,7 @@
 import pic from "../../assets/Health.png";
 const SinglePage = () => {
   return (
-    <div className="px-[140px]">
+    <div className="px-[140px] mt-[200px]">
       <div className="w-auto h-[700px] relative mb-[56px]">
         <div className="">
           <img src={pic} className=" w-full h-[700px]" alt="" />
